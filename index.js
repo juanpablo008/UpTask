@@ -1,7 +1,5 @@
 const express = require('express');
-const morgan = require('morgan');
 const path = require('path');
-const chalk = require('chalk');
 const flash = require('connect-flash');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
@@ -16,7 +14,7 @@ const helpers = require('./helpers');
 // connecting to database
 const db = require('./config/bd');
 db.sync()
-  .then(() => console.log(chalk.bgCyan.black('Database connected')))
+  .then(() => console.log('Database connected'));
   .catch(error => console.log(error));
 
 
@@ -46,7 +44,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // middelweares
-app.use(morgan('dev'));
 app.use((req, res, next) =>{
   res.locals.vardump = helpers.vardomp;
   res.locals.mensajes = req.flash();
@@ -60,6 +57,6 @@ const host = process.env.HOST || '0.0.0.0';
 
 // starting server
 app.listen(app.get('port'), host, () => {
-  console.log(chalk.bgCyan.black(`Server on port ${app.get('port')}`));
+  console.log(`Server on port ${app.get('port')}`);
 });
 
