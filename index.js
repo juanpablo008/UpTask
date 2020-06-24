@@ -14,7 +14,7 @@ const helpers = require('./helpers');
 // connecting to database
 const db = require('./config/bd');
 db.sync()
-  .then(() => console.log('Database connected'));
+  .then(() => console.log('Database connected'))
   .catch(error => console.log(error));
 
 
